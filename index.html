@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TJKT Smart Network - Pusat Informasi & Solusi Jaringan Komputer</title>
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <!-- Header dan Navigasi Gaya DomaiNesia -->
+    <header class="site-header">
+        <div class="header-container">
+            <a href="#" class="brand-logo">
+                <div class="logo-badge">TJKT</div>
+                <span class="logo-text">Smart<span class="logo-highlight">Network</span></span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#beranda" class="nav-link active">Beranda</a></li>
+                <li><a href="#layanan" class="nav-link">Layanan</a></li>
+                <li><a href="#fitur" class="nav-link">Keunggulan</a></li>
+                <li><a href="#kontak" class="nav-link">Kontak</a></li>
+                <li><a href="#pembayaran" class="nav-link">Pembayaran QRIS</a></li>
+            </ul>
+            <div class="header-actions">
+                <a href="https://wa.me/62895322211425?text=Halo%20TJKT%20Smart%20Network,%20saya%20ingin%20konsultasi%20mengenai%20layanan%20jaringan"
+                    target="_blank" rel="noopener noreferrer" class="btn-primary-sm">Konsultasi WhatsApp</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Isi Utama Website -->
+    <main>
+        <!-- Hero Banner Section (Style Blog DomaiNesia) -->
+        <section id="beranda" class="hero-section">
+            <div class="container hero-container">
+                <div class="hero-text">
+                    <div class="hero-badge">
+                        <span class="badge-dot"></span> Memberikan Bantuan Jaringan Secara Profesional
+                    </div>
+                    <h1 class="hero-title">Selamat Datang di <span class="gradient-text">TJKT Smart Network</span></h1>
+                    <p class="hero-description">
+                        Pusat kebutuhan jaringan komputer dan teknologi informasi. Kami siap membantu Anda menyelesaikan
+                        masalah seputar jaringan dan memberikan solusi terbaik secara tepat, efisien, dan terpercaya.
+                    </p>
+
+                    <!-- Search Bar Interaktif -->
+                    <div class="hero-search">
+                        <div class="search-input-wrapper">
+                            <span class="search-icon">🔍</span>
+                            <input type="text" id="searchInput"
+                                placeholder="Cari masalah Anda (misal: lemot, wifi, virus, instalasi, router)..."
+                                aria-label="Cari artikel atau layanan">
+                            <button type="button" id="searchBtn" class="btn-search">Cari Solusi</button>
+                        </div>
+                    </div>
+
+                    <!-- Category Pills Filter -->
+                    <div class="category-pills">
+                        <span class="pill-label">Topik Populer:</span>
+                        <a href="#layanan" class="pill active" data-category="all">Semua</a>
+                        <a href="#layanan" class="pill" data-category="instalasi">Instalasi</a>
+                        <a href="#layanan" class="pill" data-category="pemeliharaan">Pemeliharaan</a>
+                        <a href="#layanan" class="pill" data-category="troubleshooting">Troubleshooting</a>
+                        <a href="#layanan" class="pill" data-category="keamanan">Keamanan</a>
+                    </div>
+                </div>
+
+                <div class="hero-media">
+                    <div class="gd-game-wrapper">
+                        <!-- Game Selector Tabs -->
+                        <div class="arcade-tabs">
+                            <button type="button" class="arcade-tab active" data-game="gd">🎮 Geometry Dash (50%)</button>
+                            <button type="button" class="arcade-tab" data-game="shooter">🎯 Quiz Shooter (35%)</button>
+                        </div>
+
+                        <!-- GAME 1: GEOMETRY DASH -->
+                        <div id="gdGameView" class="game-view-container">
+                            <div class="gd-game-header">
+                                <div class="gd-title-box">
+                                    <span class="gd-icon">🎮</span>
+                                    <div>
+                                        <strong>Geometry Dash TJKT</strong>
+                                        <small>Mainkan & Dapatkan Diskon 50%!</small>
+                                    </div>
+                                </div>
+                                <span id="gdProgressText" class="gd-progress-badge">0%</span>
+                            </div>
+
+                            <div class="gd-canvas-container">
+                                <canvas id="gdCanvas" width="460" height="250"></canvas>
+
+                                <!-- Game Start Overlay -->
+                                <div id="gdStartOverlay" class="gd-overlay">
+                                    <div class="gd-overlay-content">
+                                        <span class="gd-trophy-icon">🏆</span>
+                                        <h3>Geometry Dash Challenge</h3>
+                                        <p>Capai <strong>100%</strong> untuk mendapatkan <strong>Diskon 50%</strong> semua layanan jaringan!</p>
+                                        <button type="button" id="gdStartBtn" class="btn-gd-start">🚀 Mulai Game</button>
+                                        <small class="gd-hint">Klik Layar / Tekan SPASI untuk Melompat</small>
+                                    </div>
+                                </div>
+
+                                <!-- Game Over Overlay -->
+                                <div id="gdGameOverOverlay" class="gd-overlay" style="display: none;">
+                                    <div class="gd-overlay-content">
+                                        <span class="gd-skull-icon">💥</span>
+                                        <h3>Game Over!</h3>
+                                        <p>Pencapaian Anda: <strong id="gdFinalProgress">0%</strong></p>
+                                        <button type="button" id="gdRetryBtn" class="btn-gd-retry">🔄 Coba Lagi</button>
+                                    </div>
+                                </div>
+
+                                <!-- Victory Overlay (Diskon 50%) -->
+                                <div id="gdWinOverlay" class="gd-overlay win-bg" style="display: none;">
+                                    <div class="gd-overlay-content">
+                                        <div class="confetti-badge">🎉 100% VICTORY! 🎉</div>
+                                        <h3>SELAMAT! ANDA MENANG!</h3>
+                                        <p class="win-discount-text">Diskon 50% Berhasil Dibuka!</p>
+                                        <div class="voucher-code-box">
+                                            <small>KODE VOUCHER KLAIM:</small>
+                                            <strong id="voucherCodeText">TJKT50OFF</strong>
+                                        </div>
+                                        <a href="https://wa.me/62895322211425?text=Halo%20TJKT%20Smart%20Network,%20saya%20berhasil%20memenangkan%20game%20Geometry%20Dash!%20Saya%20ingin%20klaim%20VOUCHER%20DISKON%2050%25:%20TJKT50OFF"
+                                            id="gdClaimWaBtn" target="_blank" rel="noopener noreferrer"
+                                            class="btn-gd-claim">🎁 Klaim Diskon 50% via WhatsApp</a>
+                                        <button type="button" id="gdPlayAgainBtn" class="btn-gd-secondary">🎮 Main Lagi</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="gd-game-footer">
+                                <div class="gd-progress-bar-bg">
+                                    <div id="gdProgressBar" class="gd-progress-bar-fill" style="width: 0%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- GAME 2: QUIZ SHOOTER -->
+                        <div id="shooterGameView" class="game-view-container" style="display: none;">
+                            <div class="gd-game-header">
+                                <div class="gd-title-box">
+                                    <span class="gd-icon">🎯</span>
+                                    <div>
+                                        <strong>TJKT Quiz Shooter (10 Soal)</strong>
+                                        <small id="shooterDifficultyBadge">🟢 Level 1: Mudah</small>
+                                    </div>
+                                </div>
+                                <div class="shooter-stats-badge">
+                                    <span>Skor: <strong id="shooterScore">0/10</strong></span>
+                                    <span>❤️ <strong id="shooterLives">3</strong></span>
+                                </div>
+                            </div>
+
+                            <div class="gd-canvas-container">
+                                <canvas id="shooterCanvas" width="460" height="250"></canvas>
+
+                                <!-- Shooter Start Overlay with Difficulty Selector -->
+                                <div id="shooterStartOverlay" class="gd-overlay">
+                                    <div class="gd-overlay-content">
+                                        <span class="gd-trophy-icon">🔫</span>
+                                        <h3>Shooter Quiz Challenge (10 Soal)</h3>
+                                        <p>Pilih tingkat kesulitan, tembak <strong>10 Soal TJKT</strong> & klaim voucher diskon sesuai level pilihan Anda!</p>
+
+                                        <!-- Interactive Difficulty Level Options -->
+                                        <div class="difficulty-select-box">
+                                            <small class="diff-title">PILIH TINGKAT KESULITAN:</small>
+                                            <div class="diff-buttons-grid">
+                                                <button type="button" class="btn-diff-select active" data-diff="easy">
+                                                    🟢 <strong>MUDAH</strong>
+                                                    <small>Diskon 25%</small>
+                                                </button>
+                                                <button type="button" class="btn-diff-select" data-diff="medium">
+                                                    🟡 <strong>SEDANG</strong>
+                                                    <small>Diskon 35%</small>
+                                                </button>
+                                                <button type="button" class="btn-diff-select" data-diff="hard">
+                                                    🔴 <strong>EXPERT</strong>
+                                                    <small>Diskon 50%</small>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <button type="button" id="shooterStartBtn" class="btn-gd-start">🎯 Mulai Main (10 Soal)</button>
+                                        <small class="gd-hint">Arahkan Kursor & KLIK untuk Menembak Target Jawaban</small>
+                                    </div>
+                                </div>
+
+                                <!-- Shooter Game Over Overlay -->
+                                <div id="shooterGameOverOverlay" class="gd-overlay" style="display: none;">
+                                    <div class="gd-overlay-content">
+                                        <span class="gd-skull-icon">💥</span>
+                                        <h3>Game Over!</h3>
+                                        <p>Skor Anda: <strong id="shooterFinalScore">0/10</strong></p>
+                                        <button type="button" id="shooterRetryBtn" class="btn-gd-retry">🔄 Coba Lagi</button>
+                                    </div>
+                                </div>
+
+                                <!-- Shooter Victory Overlay -->
+                                <div id="shooterWinOverlay" class="gd-overlay win-bg" style="display: none;">
+                                    <div class="gd-overlay-content">
+                                        <div class="confetti-badge">🎯 PERFECT 10/10 SCORE! 🎯</div>
+                                        <h3>SELAMAT! ANDA LULUS 10 SOAL!</h3>
+                                        <p id="shooterWinDiffText" class="win-discount-text">Voucher Diskon 35% Berhasil Dibuka!</p>
+                                        <div class="voucher-code-box">
+                                            <small>KODE VOUCHER KLAIM:</small>
+                                            <strong id="shooterVoucherCode">TJKTSHOOT35</strong>
+                                        </div>
+                                        <a href="https://wa.me/62895322211425?text=Halo%20TJKT%20Smart%20Network,%20saya%20berhasil%20memenangkan%20Quiz%20Shooter!%20Saya%20ingin%20klaim%20VOUCHER%20DISKON:"
+                                            id="shooterClaimWaBtn" target="_blank" rel="noopener noreferrer"
+                                            class="btn-gd-claim">🎁 Klaim Diskon via WhatsApp</a>
+                                        <button type="button" id="shooterPlayAgainBtn" class="btn-gd-secondary">🎮 Main Lagi</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="gd-game-footer">
+                                <div class="shooter-question-banner">
+                                    <small id="shooterQNum">SOAL 1 DARI 5:</small>
+                                    <strong id="shooterQText">Loading soal...</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Bar Section (Keunggulan Layanan) -->
+        <section id="fitur" class="features-section">
+            <div class="container">
+                <div class="section-header text-center features-header">
+                    <span class="section-subtitle">MENGAPA MEMILIH KAMI?</span>
+                    <h2 class="section-title">Keunggulan Utama TJKT Smart Network</h2>
+                    <p class="section-description">
+                        Kami memberikan jaminan pelayanan terbaik dengan standar profesionalisme tinggi untuk kepuasan dan kenyamanan jaringan internet Anda.
+                    </p>
+                </div>
+
+                <div class="features-grid">
+                    <!-- Feature 1: Call Center 24 Jam -->
+                    <div class="feature-item">
+                        <div class="feature-icon icon-blue">📞</div>
+                        <div class="feature-info">
+                            <h3>Call Center 24 Jam Non-Stop</h3>
+                            <p>Tim helpdesk dan teknisi siap siaga melayani konsultasi & kendala jaringan Anda kapan pun selama 24/7 tanpa libur.</p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 2: Ketepatan Waktu -->
+                    <div class="feature-item">
+                        <div class="feature-icon icon-green">⏱️</div>
+                        <div class="feature-info">
+                            <h3>Pasti Tepat Waktu (On-Time)</h3>
+                            <p>Jaminan kedatangan teknisi tepat waktu sesuai jadwal perjanjian dengan proses instalasi cepat & penataan kabel rapih.</p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 3: Harga Sangat Terjangkau -->
+                    <div class="feature-item">
+                        <div class="feature-icon icon-orange">💸</div>
+                        <div class="feature-info">
+                            <h3>Harga Paling Terjangkau</h3>
+                            <p>Biaya pemasangan & perawatan jauh lebih ekonomis dibanding kompetitor lain tanpa mengorbankan kualitas perangkat.</p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 4: Garansi & Konfigurasi Cepat -->
+                    <div class="feature-item">
+                        <div class="feature-icon icon-purple">⚡</div>
+                        <div class="feature-info">
+                            <h3>Setup Cepat & Garansi 30 Hari</h3>
+                            <p>Proses instalasi & setting Wi-Fi selesai pada hari yang sama dengan jaminan pemeliharaan gratis selama 30 hari penuh.</p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 5: Keamanan Cyber Maksimal -->
+                    <div class="feature-item">
+                        <div class="feature-icon icon-cyan">🛡️</div>
+                        <div class="feature-info">
+                            <h3>Proteksi Keamanan Maksimal</h3>
+                            <p>Sistem enkripsi WPA3 & Firewall tangguh untuk mencegah kebocoran data, serangan malware, dan penyusup Wi-Fi.</p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 6: Teknisi Bersertifikasi & Ahli -->
+                    <div class="feature-item">
+                        <div class="feature-icon icon-red">🎓</div>
+                        <div class="feature-info">
+                            <h3>Teknisi Ahli & Bersertifikasi</h3>
+                            <p>Ditangani langsung oleh tim teknisi X-TJKT B yang terlatih, profesional, ramah, dan berpengalaman di bidang IT & Jaringan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Layanan: Blog Card Grid Style DomaiNesia -->
+        <section id="layanan" class="layanan-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-subtitle">LAYANAN & PANDUAN</span>
+                    <h2 class="section-title">Yang Dapat Anda Temukan</h2>
+                    <p class="section-description">
+                        Kami menyediakan layanan instalasi dan perawatan jaringan komputer untuk sekolah, kantor, rumah,
+                        tempat usaha, dan berbagai tempat terjangkau internet.
+                    </p>
+
+                    <!-- Search Status Alert -->
+                    <div id="searchStatus" class="search-status-alert" style="display: none;"></div>
+                </div>
+
+                <!-- No Results Fallback Box -->
+                <div id="noResultsBox" class="no-results-box" style="display: none;">
+                    <div class="no-results-icon">🔎</div>
+                    <h3>Solusi Belum Ditemukan untuk "<span id="noResultsQuery"></span>"</h3>
+                    <p>Jangan khawatir! Tim teknisi TJKT Smart Network siap membantu mendiagnosa dan menyelesaikan
+                        masalah jaringan Anda secara langsung.</p>
+                    <a href="#" id="waNoResultsBtn" target="_blank" rel="noopener noreferrer"
+                        class="btn-wa">Konsultasikan Masalah Ini via WhatsApp</a>
+                </div>
+
+                <div class="layanan-grid" id="layananGrid">
+                    <!-- Card 1 -->
+                    <article class="layanan-card" data-category="instalasi"
+                        data-keywords="instalasi jaringan komputer router switch lan wlan wifi pasang setup mikrotik internet bisnis kantor rumah setting kabel biaya tempat pemasangan">
+                        <div class="card-thumb">
+                            <img src="gambar jaringan kompuyter.jpeg" alt="Jaringan Komputer">
+                            <span class="card-tag tag-blue">Instalasi & Konfigurasi</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-price-header">
+                                <small class="price-label">Biaya Pemasangan / Setup:</small>
+                                <div class="price-amount">
+                                    <del class="old-price">Rp 300.000</del>
+                                    <strong class="current-price">Rp 150.000</strong>
+                                </div>
+                            </div>
+                            <h3 class="card-title">Jaringan Komputer & Wi-Fi</h3>
+                            <p class="card-text">
+                                Instalasi dan konfigurasi jaringan komputer/Wi-Fi cepat & stabil untuk hunian maupun
+                                bisnis.
+                            </p>
+
+                            <!-- Tempat Pemasangan Badges -->
+                            <div class="card-locations">
+                                <small>📍 Tempat Pemasangan:</small>
+                                <div class="location-badges">
+                                    <span class="loc-badge">🏠 Rumah & Kos</span>
+                                    <span class="loc-badge">🏢 Kantor</span>
+                                    <span class="loc-badge">🏫 Sekolah</span>
+                                    <span class="loc-badge">🏬 Cafe/Usaha</span>
+                                </div>
+                            </div>
+
+                            <ul class="card-features-mini">
+                                <li>⚡ Dual-Band Wi-Fi Router Support</li>
+                                <li>🔌 Penataan Kabel LAN / UTP Rapih</li>
+                                <li>🛡️ Garansi Pemasangan 30 Hari</li>
+                            </ul>
+
+                            <button type="button" class="btn-select-service" data-service-id="instalasi" data-service-name="Instalasi & Konfigurasi Jaringan" data-base-price="150000" data-old-price="300000">Pilih Layanan & Tentukan Domisili 📍</button>
+                        </div>
+                    </article>
+
+                    <!-- Card 2 -->
+                    <article class="layanan-card" data-category="pemeliharaan"
+                        data-keywords="pemeliharaan perawatan jaringan komputer pc maintenance virus malware lemot slow rutin bersihkan hardware perawatan berkala biaya tempat pemasangan">
+                        <div class="card-thumb">
+                            <img src="gambar pemeliharaan komputer.jpeg" alt="Pemeliharaan Jaringan">
+                            <span class="card-tag tag-green">Maintenance</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-price-header">
+                                <small class="price-label">Biaya Perawatan Routine:</small>
+                                <div class="price-amount">
+                                    <strong class="current-price">Rp 100.000 <small>/ visit</small></strong>
+                                </div>
+                            </div>
+                            <h3 class="card-title">Pemeliharaan Jaringan</h3>
+                            <p class="card-text">
+                                Perawatan berkala untuk memastikan Wi-Fi & komputer bebas virus, lemot, dan gangguan
+                                teknis.
+                            </p>
+
+                            <!-- Tempat Pemasangan Badges -->
+                            <div class="card-locations">
+                                <small>📍 Tempat Pemasangan / Servis:</small>
+                                <div class="location-badges">
+                                    <span class="loc-badge">🏠 Rumah</span>
+                                    <span class="loc-badge">🏢 Perusahaan</span>
+                                    <span class="loc-badge">🏫 Lab Komputer</span>
+                                </div>
+                            </div>
+
+                            <ul class="card-features-mini">
+                                <li>🧹 Clean Virus & Cache Junk File</li>
+                                <li>🛠️ Update Firmware Router & Switch</li>
+                                <li>📊 Check Speed & Traffic Load</li>
+                            </ul>
+
+                            <button type="button" class="btn-select-service" data-service-id="pemeliharaan" data-service-name="Pemeliharaan Jaringan Routine" data-base-price="100000" data-old-price="200000">Pilih Layanan & Tentukan Domisili 📍</button>
+                        </div>
+                    </article>
+
+                    <!-- Card 3 -->
+                    <article class="layanan-card" data-category="troubleshooting"
+                        data-keywords="troubleshooting perbaikan masalah jaringan rst error internet putus sambung ip conflict mikrotik lemot mati terputus lambat lemot tidak terkoneksi no internet biaya tempat pemasangan">
+                        <div class="card-thumb">
+                            <img src="troubleshoot.jpeg" alt="Troubleshooting">
+                            <span class="card-tag tag-orange">Troubleshooting</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-price-header">
+                                <small class="price-label">Biaya Perbaikan Cepat:</small>
+                                <div class="price-amount">
+                                    <strong class="current-price">Rp 75.000 <small>/ kasus</small></strong>
+                                </div>
+                            </div>
+                            <h3 class="card-title">Troubleshooting Jaringan</h3>
+                            <p class="card-text">
+                                Penanganan cepat untuk Wi-Fi lemot, terputus, bentrok IP, atau router error agar kembali
+                                normal.
+                            </p>
+
+                            <!-- Tempat Pemasangan Badges -->
+                            <div class="card-locations">
+                                <small>📍 Cakupan Layanan:</small>
+                                <div class="location-badges">
+                                    <span class="loc-badge">🌐 Semua Lokasi Wi-Fi</span>
+                                </div>
+                            </div>
+
+                            <ul class="card-features-mini">
+                                <li>🚀 Diagnosa Tepat & Solusi Cepat</li>
+                                <li>🔧 Re-config IP & Mikrotik Gateway</li>
+                                <li>📞 Hotline Support 24/7</li>
+                            </ul>
+
+                            <button type="button" class="btn-select-service" data-service-id="troubleshooting" data-service-name="Troubleshooting & Perbaikan Cepat" data-base-price="75000" data-old-price="150000">Pilih Layanan & Tentukan Domisili 📍</button>
+                        </div>
+                    </article>
+
+                    <!-- Card 4 -->
+                    <article class="layanan-card" data-category="keamanan"
+                        data-keywords="keamanan jaringan security hacker firewall proteksi virus malware serangan data enkripsi wpa3 vlan peretasan terproteksi aman pishing biaya tempat pemasangan">
+                        <div class="card-thumb">
+                            <img src="keamanan jaringan.jpeg" alt="Keamanan Jaringan">
+                            <span class="card-tag tag-purple">Keamanan</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-price-header">
+                                <small class="price-label">Biaya Sistem Proteksi:</small>
+                                <div class="price-amount">
+                                    <strong class="current-price">Rp 200.000</strong>
+                                </div>
+                            </div>
+                            <h3 class="card-title">Keamanan Jaringan</h3>
+                            <p class="card-text">
+                                Proteksi jaringan Wi-Fi & data dari ancaman hacker, peretasan password, dan pencurian
+                                data.
+                            </p>
+
+                            <!-- Tempat Pemasangan Badges -->
+                            <div class="card-locations">
+                                <small>📍 Tempat Pemasangan Proteksi:</small>
+                                <div class="location-badges">
+                                    <span class="loc-badge">🏢 Perusahaan</span>
+                                    <span class="loc-badge">🏫 Instansi / Sekolah</span>
+                                    <span class="loc-badge">🏬 Toko & Co-Working</span>
+                                </div>
+                            </div>
+
+                            <ul class="card-features-mini">
+                                <li>🔒 Firewall & WPA3 Encrypted Wi-Fi</li>
+                                <li>🌐 VLAN Separasi Network Data</li>
+                                <li>🛡️ Anti Ransomware & Malware</li>
+                            </ul>
+
+                            <button type="button" class="btn-select-service" data-service-id="keamanan" data-service-name="Keamanan & Proteksi Jaringan" data-base-price="200000" data-old-price="400000">Pilih Layanan & Tentukan Domisili 📍</button>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Section Pemasangan & Biaya Wi-Fi ala Telkomsel/IndiHome -->
+                <div class="wifi-location-wrapper" id="pilih-domisili-box">
+                    <div class="wifi-location-header text-center">
+                        <span class="badge-wifi">📶 LOKASI & BIAYA PEMASANGAN WI-FI</span>
+                        <h3>Pilih Tempat Pemasangan Wi-Fi & Cek Estimasi Biaya</h3>
+                        <p>Dapatkan pengalaman internet Wi-Fi super cepat yang disesuaikan dengan lokasi dan kebutuhan Anda.</p>
+                    </div>
+
+                    <!-- Banner Layanan Dipilih -->
+                    <div id="serviceSelectedBanner" class="service-selected-banner" style="display: none;">
+                        <span class="banner-icon">📍</span>
+                        <div class="banner-text">
+                            <small class="banner-label">LAYANAN DIPILIH:</small>
+                            <strong id="bannerServiceName">Instalasi & Konfigurasi Jaringan</strong>
+                            <span id="bannerServicePrice">Base Harga: Rp 150.000</span>
+                        </div>
+                    </div>
+
+                    <!-- Selector Kota / Domisili Pemasangan (Interactive Indonesian City Cards Grid) -->
+                    <div class="city-selector-box" id="cityGridContainer">
+                        <div class="city-header-title">
+                            <span class="city-icon">📍</span>
+                            <div>
+                                <h3>PILIH KOTA / DOMISILI ANDA:</h3>
+                                <p class="city-subtitle-note">Harga di bawah ini otomatis menyesuaikan jarak domisili dari Homebase Surakarta HQ</p>
+                            </div>
+                        </div>
+
+                        <!-- Dropdown Selector -->
+                        <div class="city-input-group">
+                            <select id="citySelect" class="city-select-dropdown">
+                                <option value="Surakarta / Solo">📍 Surakarta / Solo (Area Utama TJKT)</option>
+                                <option value="Semarang">📍 Semarang & Sekitarnya</option>
+                                <option value="Yogyakarta">📍 Yogyakarta & Sekitarnya</option>
+                                <option value="Jakarta">📍 Jakarta & Jabodetabek</option>
+                                <option value="Bandung">📍 Bandung & Sekitarnya</option>
+                                <option value="Surabaya">📍 Surabaya & Sekitarnya</option>
+                                <option value="Medan">📍 Medan & Sumatra</option>
+                                <option value="Makassar">📍 Makassar & Sulawesi</option>
+                                <option value="Denpasar / Bali">📍 Denpasar / Bali</option>
+                                <option value="Kota Lainnya">📍 Kota / Area Lainnya (Seluruh Indonesia)</option>
+                            </select>
+                            <span id="cityStatusBadge" class="city-status-badge">✅ Surakarta Terjangkau Teknisi</span>
+                        </div>
+
+                        <!-- Grid Opsi Kota Indonesia dengan Display Harga Live per Wilayah -->
+                        <div class="city-cards-grid" id="cityCardsGrid">
+                            <button type="button" class="btn-city-card active" data-city="Surakarta / Solo" data-surcharge="0">
+                                <div class="city-card-top">
+                                    <span class="city-card-icon">🏛️</span>
+                                    <strong>Surakarta / Solo</strong>
+                                </div>
+                                <span class="city-card-note">HQ Utama (Bebas Transport)</span>
+                                <div class="city-card-price-tag" data-city-price="150000">Rp 150.000</div>
+                            </button>
+
+                            <button type="button" class="btn-city-card" data-city="Yogyakarta" data-surcharge="25000">
+                                <div class="city-card-top">
+                                    <span class="city-card-icon">🕌</span>
+                                    <strong>Yogyakarta</strong>
+                                </div>
+                                <span class="city-card-note">~60 km (+Rp 25rb)</span>
+                                <div class="city-card-price-tag" data-city-price="175000">Rp 175.000</div>
+                            </button>
+
+                            <button type="button" class="btn-city-card" data-city="Semarang" data-surcharge="40000">
+                                <div class="city-card-top">
+                                    <span class="city-card-icon">⛵</span>
+                                    <strong>Semarang</strong>
+                                </div>
+                                <span class="city-card-note">~100 km (+Rp 40rb)</span>
+                                <div class="city-card-price-tag" data-city-price="190000">Rp 190.000</div>
+                            </button>
+
+                            <button type="button" class="btn-city-card" data-city="Surabaya" data-surcharge="75000">
+                                <div class="city-card-top">
+                                    <span class="city-card-icon">🦈</span>
+                                    <strong>Surabaya</strong>
+                                </div>
+                                <span class="city-card-note">~260 km (+Rp 75rb)</span>
+                                <div class="city-card-price-tag" data-city-price="225000">Rp 225.000</div>
+                            </button>
+
+                            <button type="button" class="btn-city-card" data-city="Bandung" data-surcharge="100000">
+                                <div class="city-card-top">
+                                    <span class="city-card-icon">⛰️</span>
+                                    <strong>Bandung</strong>
+                                </div>
+                                <span class="city-card-note">~450 km (+Rp 100rb)</span>
+                                <div class="city-card-price-tag" data-city-price="250000">Rp 250.000</div>
+                            </button>
+
+                            <button type="button" class="btn-city-card" data-city="Jakarta" data-surcharge="125000">
+                                <div class="city-card-top">
+                                    <span class="city-card-icon">🏙️</span>
+                                    <strong>Jakarta</strong>
+                                </div>
+                                <span class="city-card-note">~550 km (+Rp 125rb)</span>
+                                <div class="city-card-price-tag" data-city-price="275000">Rp 275.000</div>
+                            </button>
+
+                            <button type="button" class="btn-city-card" data-city="Denpasar / Bali" data-surcharge="150000">
+                                <div class="city-card-top">
+                                    <span class="city-card-icon">🏝️</span>
+                                    <strong>Bali / Denpasar</strong>
+                                </div>
+                                <span class="city-card-note">~650 km (+Rp 150rb)</span>
+                                <div class="city-card-price-tag" data-city-price="300000">Rp 300.000</div>
+                            </button>
+
+                            <button type="button" class="btn-city-card" data-city="Medan" data-surcharge="200000">
+                                <div class="city-card-top">
+                                    <span class="city-card-icon">🌴</span>
+                                    <strong>Medan & Sumatra</strong>
+                                </div>
+                                <span class="city-card-note">~1.800 km (+Rp 200rb)</span>
+                                <div class="city-card-price-tag" data-city-price="350000">Rp 350.000</div>
+                            </button>
+
+                            <button type="button" class="btn-city-card" data-city="Makassar" data-surcharge="225000">
+                                <div class="city-card-top">
+                                    <span class="city-card-icon">⚓</span>
+                                    <strong>Makassar & Sulawesi</strong>
+                                </div>
+                                <span class="city-card-note">~1.400 km (+Rp 225rb)</span>
+                                <div class="city-card-price-tag" data-city-price="375000">Rp 375.000</div>
+                            </button>
+
+                            <button type="button" class="btn-city-card" data-city="Kota Lainnya" data-surcharge="250000">
+                                <div class="city-card-top">
+                                    <span class="city-card-icon">🗺️</span>
+                                    <strong>Kota Lainnya</strong>
+                                </div>
+                                <span class="city-card-note">Seluruh Indonesia (+Rp 250rb)</span>
+                                <div class="city-card-price-tag" data-city-price="400000">Rp 400.000</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="location-tabs">
+                        <button type="button" class="loc-tab active" data-loc="rumah">🏠 Rumah / Kos</button>
+                        <button type="button" class="loc-tab" data-loc="kantor">🏢 Kantor / Bisnis</button>
+                        <button type="button" class="loc-tab" data-loc="sekolah">🏫 Sekolah / Kampus</button>
+                        <button type="button" class="loc-tab" data-loc="cafe">🏬 Cafe / Tempat Usaha</button>
+                    </div>
+
+                    <div id="locDetailBox" class="loc-detail-card">
+                        <div class="loc-detail-info">
+                            <h4 id="locTitle">Pemasangan Wi-Fi Paket Rumah & Kos</h4>
+                            <p id="locDesc">Sangat ideal untuk hunian pribadi, kamar kos, dan rumah keluarga. Jangkauan
+                                sinyal Wi-Fi luas dan stabil untuk streaming 4K, WFH, dan gaming.</p>
+                            <ul id="locFeatures" class="loc-feature-list">
+                                <li>✅ Kecepatan s.d 30-50 Mbps Unlimited (Tanpa Batas Kuota)</li>
+                                <li>✅ Gratis Setting Wi-Fi Router Dual-Band High Power</li>
+                                <li>✅ Garansi Maintenance & Pemasangan Kabel Rapih</li>
+                            </ul>
+                        </div>
+                        <div class="loc-price-box" id="locPriceBoxContainer" title="Klik nominal ini untuk melakukan pembayaran via QRIS">
+                            <small>BIAYA PEMASANGAN & SETUP (KLIK NOMINAL UNTUK BAYAR QRIS):</small>
+                            <div class="price-display" id="priceDisplayClickable">
+                                <del id="locOldPrice">Rp 300.000</del>
+                                <strong id="locPrice" class="loc-price-clickable">Rp 150.000</strong>
+                            </div>
+                            <span class="price-note">⚡ Klik Nominal di Atas atau Tombol di Bawah untuk Bayar QRIS!</span>
+                            <button type="button" id="btnOpenQrisModal" class="btn-order-wifi">💳 Bayar via QRIS & Hubungi Teknisi →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bagian Kontak / Call to Action -->
+        <section id="kontak" class="kontak-section">
+            <div class="container">
+                <div class="kontak-box">
+                    <div class="kontak-header text-center">
+                        <span class="section-subtitle light">HUBUNGI KAMI</span>
+                        <h2 class="section-title light">Konsultasikan Kebutuhan Jaringan Anda</h2>
+                        <p class="kontak-subtext">
+                            Masalah jaringan Anda adalah tanggung jawab kami. Tim TJKT Smart Network siap memberikan
+                            konsultasi dan penanganan terbaik.
+                        </p>
+                    </div>
+
+                    <div class="kontak-grid">
+                        <div class="kontak-card highlight-email">
+                            <div class="kontak-icon">✉️</div>
+                            <h3>Email Resmi</h3>
+                            <p>
+                                <a href="mailto:tjktbaik@gmail.com?subject=Konsultasi%20Layanan%20Jaringan%20TJKT%20Smart%20Network&body=Halo%20TJKT%20Smart%20Network,%0A%0ASaya%20ingin%20berkonsultasi%20mengenai%20layanan%20jaringan..." class="email-address-link" id="emailContactLink" title="Klik untuk langsung membuka aplikasi email">
+                                    tjktbaik@gmail.com
+                                </a>
+                            </p>
+                            <a href="mailto:tjktbaik@gmail.com?subject=Konsultasi%20Layanan%20Jaringan%20TJKT%20Smart%20Network&body=Halo%20TJKT%20Smart%20Network,%0A%0ASaya%20ingin%20berkonsultasi%20mengenai%20layanan%20jaringan..." class="btn-email" id="btnSendEmail">
+                                ✉️ Kirim Email Sekarang
+                            </a>
+                            <div class="email-alt-box">
+                                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=tjktbaik@gmail.com&su=Konsultasi%20Layanan%20Jaringan%20TJKT%20Smart%20Network&body=Halo%20TJKT%20Smart%20Network,%20saya%20ingin%20berkonsultasi%20mengenai%20layanan%20jaringan..." target="_blank" rel="noopener noreferrer" class="link-gmail-web" title="Buka langsung di tab Gmail browser Anda">
+                                    🌐 Buka via Gmail Web →
+                                </a>
+                            </div>
+                        </div>
+                        <div class="kontak-card highlight-wa">
+                            <div class="kontak-icon">💬</div>
+                            <h3>WhatsApp / Telepon</h3>
+                            <p><a href="https://wa.me/62895322211425?text=Halo%20TJKT%20Smart%20Network,%20saya%20ingin%20konsultasi%20mengenai%20layanan%20jaringan"
+                                    target="_blank" rel="noopener noreferrer" class="wa-phone-number">+62
+                                    8953-2221-1425</a></p>
+                            <a href="https://wa.me/62895322211425?text=Halo%20TJKT%20Smart%20Network,%20saya%20ingin%20konsultasi%20mengenai%20layanan%20jaringan"
+                                target="_blank" rel="noopener noreferrer" class="btn-wa">Chat WhatsApp Sekarang</a>
+                        </div>
+                        <div class="kontak-card">
+                            <div class="kontak-icon">📍</div>
+                            <h3>Homebase Teknisi & Alamat</h3>
+                            <p>
+                                <a href="https://maps.google.com/?q=SMKN+2+Surakarta" target="_blank" rel="noopener noreferrer" class="location-map-link">
+                                    <strong>SMKN 2 Surakarta</strong><br>
+                                    Surakarta, Jawa Tengah<br>
+                                    <span class="map-badge">🗺️ Petunjuk Arah Google Maps →</span>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Pembayaran QRIS Resmi (Disebelah / Setelah Kontak) -->
+        <section id="pembayaran" class="pembayaran-section">
+            <div class="container">
+                <div class="pembayaran-box">
+                    <div class="pembayaran-header text-center">
+                        <span class="badge-wifi">💳 PEMBAYARAN ONLINE QRIS</span>
+                        <h2 class="section-title light">Pembayaran Layanan & Konfirmasi QRIS</h2>
+                        <p class="pembayaran-subtext">
+                            Setelah Anda selesai memilih layanan dan kota domisili, silakan lakukan pembayaran melalui Barcode QRIS di bawah ini.
+                        </p>
+                    </div>
+
+                    <div class="pembayaran-grid">
+                        <!-- Kolom Kiri: Rincian Layanan & Total Biaya Dipilih -->
+                        <div class="pembayaran-card summary-card">
+                            <h3>📌 Rincian Pesanan Layanan Anda</h3>
+                            <div class="pay-detail-list">
+                                <div class="pay-detail-item">
+                                    <span>Layanan Dipilih:</span>
+                                    <strong id="secPayServiceName">Instalasi & Konfigurasi Jaringan</strong>
+                                </div>
+                                <div class="pay-detail-item">
+                                    <span>Kota Domisili:</span>
+                                    <strong id="secPayCityName">Surakarta / Solo (HQ Utama)</strong>
+                                </div>
+                                <div class="pay-detail-item">
+                                    <span>Base Harga Layanan:</span>
+                                    <strong id="secPayBasePrice">Rp 150.000</strong>
+                                </div>
+                                <div class="pay-detail-item">
+                                    <span>Biaya Transport Jarak:</span>
+                                    <strong id="secPaySurcharge">Rp 0 (Bebas Transport)</strong>
+                                </div>
+                                <div class="pay-detail-item total-item">
+                                    <span>TOTAL PEMBAYARAN LUNAS:</span>
+                                    <strong id="secPayTotalAmount">Rp 150.000</strong>
+                                </div>
+                            </div>
+                            <div class="pay-info-banner">
+                                💡 <em>Selesai memilih layanan? Scan QRIS disebelah ini untuk melunasi & langsung terhubung dengan teknisi kami.</em>
+                            </div>
+                        </div>
+
+                        <!-- Kolom Kanan: Card Display qris.jpeg Barcode Resmi -->
+                        <div class="pembayaran-card qris-card-display">
+                            <div class="qris-card-container">
+                                <div class="qris-card-header">
+                                    <div class="qris-brand">
+                                        <strong class="qris-logo-text">QRIS</strong>
+                                        <small>QR Code Standar Pembayaran Nasional</small>
+                                    </div>
+                                    <div class="gpn-logo">GPN</div>
+                                </div>
+
+                                <div class="qris-card-body">
+                                    <div class="qris-store-title">FARELZZ STORE 21 OK2150807</div>
+                                    <div class="qris-nmid">NMID : ID2024361841644</div>
+                                    <div class="qris-tag-code">A01</div>
+
+                                    <!-- Barcode Display: qris.jpeg + Canvas Realtime Fallback -->
+                                    <div class="qris-barcode-box">
+                                        <canvas id="secQrisCanvas" width="220" height="220" class="qris-canvas-barcode"></canvas>
+                                        <img src="qris.jpeg" alt="QRIS FARELZZ STORE 21 OK2150807" class="qris-barcode-img" onload="var c=document.getElementById('secQrisCanvas'); if(c) c.style.display='none';" onerror="this.src='qris.jpg'; this.onerror=function(){this.style.display='none'; var c=document.getElementById('secQrisCanvas'); if(c) c.style.display='block';};">
+                                    </div>
+
+                                    <div class="qris-slogan">SATU QRIS UNTUK SEMUA</div>
+                                    <div class="qris-website-note">Cek aplikasi penyelenggara di: www.aspi-qris.id</div>
+                                </div>
+                            </div>
+
+                            <a href="https://api.whatsapp.com/send?phone=62895322211425" id="btnSecConfirmPaid" target="_blank" rel="noopener noreferrer" class="btn-confirm-paid big-pay-btn">
+                                ✅ Saya Sudah Bayar (Konfirmasi & Hubungi Teknisi)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal Detail Solusi -->
+    <div id="solutionModal" class="modal-overlay">
+        <div class="modal-card">
+            <button type="button" id="modalClose" class="modal-close-btn">&times;</button>
+            <div class="modal-header-thumb">
+                <img id="modalImage" src="" alt="Detail Solusi">
+                <span id="modalTag" class="card-tag"></span>
+            </div>
+            <div class="modal-content-body">
+                <h2 id="modalTitle" class="modal-title"></h2>
+                <p id="modalDescription" class="modal-desc"></p>
+                <div class="modal-steps-wrapper">
+                    <h4>Langkah & Metode Penanganan TJKT:</h4>
+                    <ol id="modalSteps" class="modal-steps-list"></ol>
+                </div>
+                <div class="modal-action">
+                    <a href="#" id="modalWaBtn" target="_blank" rel="noopener noreferrer"
+                        class="btn-wa block-btn">Konsultasikan Masalah Ini via WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Gaya DomaiNesia -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="#" class="brand-logo light">
+                        <div class="logo-badge">TJKT</div>
+                        <span class="logo-text">Smart<span class="logo-highlight">Network</span></span>
+                    </a>
+                    <p class="footer-desc">
+                        Platform pusat informasi dan bantuan jaringan komputer terpercaya untuk sekolah, kantor, rumah,
+                        dan bisnis Anda.
+                    </p>
+                    <p class="footer-email-item">
+                        ✉️ Email: <a href="mailto:tjktbaik@gmail.com?subject=Konsultasi%20Layanan%20TJKT%20Smart%20Network" class="footer-email-link">tjktbaik@gmail.com</a>
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>Navigasi</h4>
+                    <ul>
+                        <li><a href="#beranda">Beranda</a></li>
+                        <li><a href="#layanan">Layanan Kami</a></li>
+                        <li><a href="#fitur">Keunggulan</a></li>
+                        <li><a href="#kontak">Hubungi Kami</a></li>
+                        <li><a href="#pembayaran">Pembayaran QRIS</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Layanan Utama</h4>
+                    <ul>
+                        <li><a href="#layanan">Instalasi & Konfigurasi</a></li>
+                        <li><a href="#layanan">Pemeliharaan Perangkat</a></li>
+                        <li><a href="#layanan">Solusi Troubleshooting</a></li>
+                        <li><a href="#layanan">Sistem Keamanan Data</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 <strong>TJKT Smart Network</strong>. Dibuat Untuk Pembelajaran Pembuatan Web Dasar Kelas
+                    X-TJKT B (Rafael Agustino S_23).</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- HTML5 Audio Element for Barasuara.mp3 Backsound -->
+    <audio id="bgmAudio" src="barasuara.mp3" loop preload="auto"></audio>
+
+    <!-- Floating BGM Music Player Widget -->
+    <div class="bgm-player-widget">
+        <button type="button" id="bgmToggleBtn" class="bgm-toggle-btn playing">
+            <span class="bgm-icon">🎶</span>
+            <span id="bgmStatusText">Musik: ON</span>
+        </button>
+    </div>
+
+    <!-- Modal Window Pembayaran QRIS (FARELZZ STORE 21) -->
+    <div id="qrisModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content qris-modal-content">
+            <button type="button" id="qrisModalClose" class="modal-close-btn">&times;</button>
+            <div class="qris-header">
+                <span class="qris-badge">💳 PEMBAYARAN ONLINE QRIS</span>
+                <h2>Scan QRIS untuk Bayar Layanan</h2>
+                <p>Silakan scan Barcode QRIS resmi di bawah ini menggunakan e-Wallet / Mobile Banking Anda.</p>
+            </div>
+
+            <!-- Rincian Transaksi -->
+            <div class="qris-summary-box">
+                <div class="summary-row">
+                    <span>Layanan Dipilih:</span>
+                    <strong id="qrisServiceName">Instalasi & Konfigurasi Jaringan</strong>
+                </div>
+                <div class="summary-row">
+                    <span>Kota Domisili:</span>
+                    <strong id="qrisCityName">Surakarta / Solo</strong>
+                </div>
+                <div class="summary-row total-row">
+                    <span>TOTAL PEMBAYARAN:</span>
+                    <strong id="qrisTotalPrice" class="qris-total-highlight">Rp 150.000</strong>
+                </div>
+            </div>
+
+            <!-- Display Barcode QRIS Resmi (FARELZZ STORE 21) -->
+            <div class="qris-card-container">
+                <div class="qris-card-header">
+                    <div class="qris-brand">
+                        <strong class="qris-logo-text">QRIS</strong>
+                        <small>QR Code Standar Pembayaran Nasional</small>
+                    </div>
+                    <div class="gpn-logo">GPN</div>
+                </div>
+
+                <div class="qris-card-body">
+                    <div class="qris-store-title">FARELZZ STORE 21 OK2150807</div>
+                    <div class="qris-nmid">NMID : ID2024361841644</div>
+                    <div class="qris-tag-code">A01</div>
+
+                    <!-- Dual Barcode Display: Image File & Instant Canvas Renderer -->
+                    <div class="qris-barcode-box">
+                        <canvas id="qrisCanvasBarcode" width="220" height="220" class="qris-canvas-barcode"></canvas>
+                        <img src="qris.jpeg" alt="QRIS FARELZZ STORE 21 OK2150807" class="qris-barcode-img" onload="var c=document.getElementById('qrisCanvasBarcode'); if(c) c.style.display='none';" onerror="this.src='qris.jpg'; this.onerror=function(){this.style.display='none'; var c=document.getElementById('qrisCanvasBarcode'); if(c) c.style.display='block';};">
+                    </div>
+
+                    <div class="qris-slogan">SATU QRIS UNTUK SEMUA</div>
+                    <div class="qris-website-note">Cek aplikasi penyelenggara di: www.aspi-qris.id</div>
+                </div>
+            </div>
+
+            <div class="qris-instructions">
+                <small>📱 Mendukung: GoPay, OVO, DANA, ShopeePay, BCA, Mandiri, BRI, BNI & Seluruh m-Banking QRIS</small>
+            </div>
+
+            <div class="qris-actions">
+                <a href="https://api.whatsapp.com/send?phone=62895322211425" id="btnConfirmQrisPaid" target="_blank" rel="noopener noreferrer" class="btn-confirm-paid">
+                    ✅ Saya Sudah Bayar (Konfirmasi & Hubungi Teknisi)
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Pop-Up Notifikasi Pembayaran Sukses 🎉 -->
+    <div id="qrisSuccessModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content qris-success-content">
+            <div class="success-icon-wrapper">
+                <span class="success-check-icon">✓</span>
+            </div>
+            <span class="success-badge">🎉 VERIFIKASI PEMBAYARAN BERHASIL</span>
+            <h2>PEMBAYARAN SUKSES!</h2>
+            <p>Terima kasih! Pembayaran biaya layanan sebesar <strong id="successTotalAmount">Rp 150.000</strong> telah diterima & diverifikasi sistem.</p>
+            
+            <div class="success-info-box">
+                <small>STATUS: <strong>LUNAS (PAID & VERIFIED)</strong></small><br>
+                <small>MERCHANT: <strong>FARELZZ STORE 21</strong></small>
+            </div>
+
+            <div class="redirect-countdown-box">
+                <span>Mengarahkan otomatis ke WhatsApp Teknisi TJKT dalam <strong id="countdownSec">3</strong> detik... ⏳</span>
+            </div>
+
+            <a href="#" id="btnDirectToWa" target="_blank" rel="noopener noreferrer" class="btn-direct-wa">💬 Lanjut ke WhatsApp Teknisi Sekarang →</a>
+        </div>
+    </div>
+
+    <!-- Script JS -->
+    <script src="script.js"></script>
+</body>
+
+</html>
